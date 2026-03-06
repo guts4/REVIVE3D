@@ -4,45 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Paper Title] | CVPR 2025</title>
+    <title>REVIVE 3D</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-title {
-            @apply text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-blue-600;
+        .hover-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         model-viewer {
             width: 100%;
-            height: 500px;
-            background-color: #f7fafc;
-            border: 1px solid #e2e8f0;
+            height: 350px;
+            background-color: #f8fafc;
+            outline: none;
         }
 
         .juxtapose {
-            height: 500px;
+            height: 350px !important;
             background-color: white !important;
         }
 
@@ -52,304 +62,282 @@
             object-fit: cover;
         }
 
-        .image-resize-container {
+        .input-thumb-container {
             width: 100%;
-            height: 500px;
-            background-color: white;
+            height: 180px;
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.5rem;
         }
 
-        .image-resize-container .image-content {
+        .input-thumb-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            width: auto;
-            height: auto;
         }
     </style>
 </head>
 
-<body class="bg-white text-gray-800 leading-relaxed">
+<body class="text-gray-800 leading-relaxed antialiased tracking-tight">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <header class="text-center mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: #6199db;">
-                <span style="font-size: 80px;">REVIVE3D</span><br>
-                <span style="font-size: 43px;">Refinement via Encoded Voluminous Inflated Prior for Volume
-                    Enhancement</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <header class="text-center mb-16 space-y-6">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-2 gradient-text pb-2">
+                REVIVE 3D
             </h1>
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 w-full mx-auto leading-snug">
+                Refinement via Encoded Voluminous Inflated Prior for Volume Enhancement
+            </h2>
+            <div class="text-xl text-blue-600 font-bold tracking-wide mt-2">
+                CVPR 2026
+            </div>
+
+            <div
+                class="text-lg md:text-2xl text-gray-800 mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 font-medium">
+                <span>Hankyeol Lee</span>
+                <span>Wooyeol Baek</span>
+                <span>Seongdo Kim</span>
+                <span>Jongyoo Kim<sup>&dagger;</sup></span>
+            </div>
+
+            <div class="text-md md:text-xl text-gray-600 mt-2">
+                Yonsei University
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <span
+                    class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
+                    <i class="fas fa-file-pdf"></i> Paper (Coming Soon)
+                </span>
+                <span
+                    class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
+                    <i class="fab fa-github"></i> Code (Coming Soon)
+                </span>
+                <span
+                    class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
+                    <i class="fas fa-play-circle"></i> Demo (Coming Soon)
+                </span>
+            </div>
         </header>
 
-        <section id="hero-image" class="mb-16">
-            <div class="w-full bg-gray-200 rounded-xl shadow-2xl overflow-hidden border-4 border-gray-300">
+        <section class="mb-20">
+            <div class="w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hover-card">
                 <img src="assets/main.png" alt="A main figure illustrating the key concept of our work."
                     class="w-full h-auto object-cover">
             </div>
         </section>
 
-        <section class="mb-16">
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-4">Abstract</h3>
-            <div class="bg-gray-100 p-8 rounded-lg shadow-inner text-lg">
-                <p>
-                    Recent generative models have shown strong performance in generating diverse 3D assets from 2D
-                    images, a fundamental
-                    research topic in computer vision and graphics. However, these models still struggle to generate
-                    voluminous 3D assets
-                    when the input is a flat image that provides limited 3D cues. We introduce REVIVE 3D, a two-stage,
-                    plug-and-play
-                    pipeline for generating voluminous 3D assets from flat images. In Stage 1, we construct an Inflated
-                    Prior by inflating
-                    the foreground silhouette to recover global volume and superimposing part-aware details to capture
-                    local structure. In
-                    Stage 2, 3D Latent Refinement injects Gaussian noise into the Inflated Prior's latent and then
-                    denoises it, guided by
-                    the prior's geometric cues and the backbone's pretrained 3D knowledge. By initializing the process
-                    with the encoded
-                    latent of a source mesh instead of the prior, the framework also supports 3D editing conditioned on
-                    an edited image. To
-                    quantify volume and surface flatness, we propose Compactness and Normal Anisotropy. We validate
-                    Compactness and Normal
-                    Anisotropy through a user study, showing that these metrics align with human perception of volume
-                    and quality. We show
-                    that REVIVE 3D achieves state-of-the-art performance on a challenging flat image dataset, based on
-                    extensive qualitative
-                    and quantitative evaluations.
-                </p>
-            </div>
+        <section class="mb-20 max-w-5xl mx-auto text-center">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">Abstract</h3>
+            <p
+                class="text-lg text-gray-600 text-justify leading-relaxed bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                Recent generative models have shown strong performance in generating diverse 3D assets from 2D images, a
+                fundamental research topic in computer vision and graphics. However, these models still struggle to
+                generate voluminous 3D assets when the input is a flat image that provides limited 3D cues. We introduce
+                <strong>REVIVE 3D</strong>, a two-stage, plug-and-play pipeline for generating voluminous 3D assets from
+                flat images. In Stage 1, we construct an Inflated Prior by inflating the foreground silhouette to
+                recover global volume and superimposing part-aware details to capture local structure. In Stage 2, 3D
+                Latent Refinement injects Gaussian noise into the Inflated Prior's latent and then denoises it, guided
+                by the prior's geometric cues and the backbone's pretrained 3D knowledge. By initializing the process
+                with the encoded latent of a source mesh instead of the prior, the framework also supports 3D editing
+                conditioned on an edited image. To quantify volume and surface flatness, we propose Compactness and
+                Normal Anisotropy. We validate Compactness and Normal Anisotropy through a user study, showing that
+                these metrics align with human perception of volume and quality. We show that REVIVE 3D achieves
+                state-of-the-art performance on a challenging flat image dataset, based on extensive qualitative and
+                quantitative evaluations.
+            </p>
         </section>
 
-        <section class="mb-16">
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-4">Pipeline</h3>
-            <p class="text-lg mb-8">
-                Overview of our method. Stage 1 generates the Inflated Prior. We create a Base 3D from the Silhouette
-                Mask and Detail 3D from Segmentation Masks, then combine them via superimposing. Stage 2 refines the
-                Inflated Prior by encoding the mesh, injecting noise, denoising it with the image condition, and
-                decoding the result into the Refined 3D mesh.
-            </p>
-            <div class="w-full bg-gray-100 rounded-lg shadow-lg p-6 border border-gray-200">
+        <section class="mb-24 max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Pipeline</h3>
+
+            <div class="bg-white rounded-3xl shadow-lg p-2 border border-gray-100 hover-card mb-4">
                 <img src="assets/architecture.png" alt="Methodology Pipeline Diagram"
-                    class="w-full h-auto rounded-md object-cover">
+                    class="w-full h-auto rounded-2xl object-cover">
             </div>
+
+            <p class="text-gray-600 text-center text-base md:text-lg leading-relaxed max-w-5xl mx-auto px-4">
+                <strong>Overview of our method.</strong> Stage 1 generates the Inflated Prior. We create a Base 3D from
+                the
+                Silhouette Mask and Detail 3D from Segmentation Masks, then combine them via superimposing. Stage 2
+                refines the
+                Inflated Prior by encoding the mesh, injecting noise, denoising it with the image condition, and
+                decoding the
+                result into the Refined 3D mesh.
+            </p>
         </section>
 
-        <section class="mb-16">
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-4">Comparison Sliders</h3>
-            <p class="text-lg mb-6">
-                Drag the slider on each image to compare our results with the baseline method.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+        <section class="mb-24">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">Comparison Sliders</h3>
+            <p class="text-gray-500 text-center mb-10 text-lg">Drag the slider to compare our results with the baseline
+                methods.</p>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/images/131_DrawingSpinUp/131.jpg"
-                            alt="Input for DrawingSpinUP">
+            <div class="flex flex-wrap justify-center gap-8">
+
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Input Image</span>
+                        <span class="text-indigo-600">DrawingSpinUP</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+                    <div class="input-thumb-container">
+                        <img src="assets/images/131_DrawingSpinUp/131.jpg" alt="Input 1">
+                    </div>
                     <div class="juxtapose w-full" data-startingposition="50%">
                         <img src="assets/images/131_DrawingSpinUp/000_DrawingSpinUp.png" data-label="DrawingSpinUP" />
                         <img src="assets/images/131_DrawingSpinUp/000_Ours.png" data-label="Ours" />
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Comparison: DrawingSpinUP vs.
-                        Ours</p>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/images/1669_Direct3D/1669.jpg" alt="Input for Direct3D">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Input Image</span>
+                        <span class="text-indigo-600">Direct3D</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+                    <div class="input-thumb-container">
+                        <img src="assets/images/1669_Direct3D/1669.jpg" alt="Input 2">
+                    </div>
                     <div class="juxtapose w-full" data-startingposition="50%">
                         <img src="assets/images/1669_Direct3D/000_Direct3D.png" data-label="Direct3D" />
                         <img src="assets/images/1669_Direct3D/000_Ours.png" data-label="Ours" />
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Comparison: Direct3D vs. Ours</p>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/images/3246_Hunyuan3D-2.1/3246.jpg"
-                            alt="Input for Hunyuan3D-2.1">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Input Image</span>
+                        <span class="text-indigo-600">Hunyuan3D-2.1</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+                    <div class="input-thumb-container">
+                        <img src="assets/images/3246_Hunyuan3D-2.1/3246.jpg" alt="Input 3">
+                    </div>
                     <div class="juxtapose w-full" data-startingposition="50%">
                         <img src="assets/images/3246_Hunyuan3D-2.1/000_Hunyuan3D-2.1.png" data-label="Hunyuan3D-2.1" />
                         <img src="assets/images/3246_Hunyuan3D-2.1/000_Ours.png" data-label="Ours" />
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Comparison: Hunyuan3D-2.1 vs.
-                        Ours
-                    </p>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/images/6323_Hunyuan3D-Omni/6323.jpg"
-                            alt="Input for Hunyuan3D-Omni">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Input Image</span>
+                        <span class="text-indigo-600">Hunyuan3D-Omni</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+                    <div class="input-thumb-container">
+                        <img src="assets/images/6323_Hunyuan3D-Omni/6323.jpg" alt="Input 4">
+                    </div>
                     <div class="juxtapose w-full" data-startingposition="50%">
                         <img src="assets/images/6323_Hunyuan3D-Omni/000_Hunyuan3D-Omni.png"
                             data-label="Hunyuan3D-Omni" />
                         <img src="assets/images/6323_Hunyuan3D-Omni/000_Ours.png" data-label="Ours" />
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Comparison: Hunyuan3D-Omni vs.
-                        Ours</p>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/images/7245_Trellis/7245.jpg" alt="Input for Trellis">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Input Image</span>
+                        <span class="text-indigo-600">Trellis</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+                    <div class="input-thumb-container">
+                        <img src="assets/images/7245_Trellis/7245.jpg" alt="Input 5">
+                    </div>
                     <div class="juxtapose w-full" data-startingposition="50%">
                         <img src="assets/images/7245_Trellis/000_Trellis.png" data-label="Trellis" />
                         <img src="assets/images/7245_Trellis/000_Ours.png" data-label="Ours" />
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Comparison: Trellis vs. Ours</p>
                 </div>
 
             </div>
         </section>
 
-        <section class="mb-16">
-            <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-4">Interactive 3D Mesh Gallery</h3>
-            <p class="text-lg mb-8">
-                Explore our reconstructed 3D models interactively. Click and drag to rotate, scroll to zoom.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+        <section class="mb-24">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">Interactive 3D Mesh Gallery</h3>
+            <p class="text-gray-500 text-center mb-10 text-lg">Explore our reconstructed 3D models interactively. Click
+                and drag to rotate, scroll to zoom.</p>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/GLB/1224.jpg" alt="Input for Astronaut">
-                    </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image1</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <model-viewer src="assets/GLB/1224.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls
-                        shadow-intensity="1" camera-orbit="-20deg 75deg 2m" field-of-view="30deg">
-                    </model-viewer>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Generated 3D Mesh1</p>
-                </div>
+            <div class="flex flex-wrap justify-center gap-8">
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/GLB/2087.jpg" alt="Input for Horse">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Model 1</span>
+                        <span class="text-indigo-600 text-xs bg-indigo-100 px-2 py-1 rounded">Input / 3D</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image2</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <model-viewer src="assets/GLB/2087.glb" alt="A 3D model of a horse" auto-rotate camera-controls
-                        shadow-intensity="1" camera-orbit="10deg 75deg 2.5m" field-of-view="30deg">
-                    </model-viewer>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Generated 3D Mesh2</p>
+                    <div class="input-thumb-container">
+                        <img src="assets/GLB/1224.jpg" alt="Input 1">
+                    </div>
+                    <model-viewer src="assets/GLB/1224.glb" alt="A 3D model 1" auto-rotate camera-controls
+                        shadow-intensity="1" camera-orbit="-20deg 75deg 2m" field-of-view="30deg"></model-viewer>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/GLB/5021.jpg" alt="Input for Neil Armstrong">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Model 2</span>
+                        <span class="text-indigo-600 text-xs bg-indigo-100 px-2 py-1 rounded">Input / 3D</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image3</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <model-viewer src="assets/GLB/5021.glb" alt="A 3D model of Neil Armstrong" auto-rotate
-                        camera-controls shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg">
-                    </model-viewer>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Generated 3D Mesh3</p>
+                    <div class="input-thumb-container">
+                        <img src="assets/GLB/2087.jpg" alt="Input 2">
+                    </div>
+                    <model-viewer src="assets/GLB/2087.glb" alt="A 3D model 2" auto-rotate camera-controls
+                        shadow-intensity="1" camera-orbit="10deg 75deg 2.5m" field-of-view="30deg"></model-viewer>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/GLB/6323.jpg" alt="Input for Model 4">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Model 3</span>
+                        <span class="text-indigo-600 text-xs bg-indigo-100 px-2 py-1 rounded">Input / 3D</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image4</p>
-                </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <model-viewer src="assets/GLB/6323.glb" alt="A 3D model of Neil Armstrong" auto-rotate
-                        camera-controls shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg">
-                    </model-viewer>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Generated 3D Mesh4</p>
+                    <div class="input-thumb-container">
+                        <img src="assets/GLB/5021.jpg" alt="Input 3">
+                    </div>
+                    <model-viewer src="assets/GLB/5021.glb" alt="A 3D model 3" auto-rotate camera-controls
+                        shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg"></model-viewer>
                 </div>
 
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <div class="image-resize-container">
-                        <img class="image-content" src="assets/GLB/8826.jpg" alt="Input for Model 5">
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Model 4</span>
+                        <span class="text-indigo-600 text-xs bg-indigo-100 px-2 py-1 rounded">Input / 3D</span>
                     </div>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Input Image5</p>
+                    <div class="input-thumb-container">
+                        <img src="assets/GLB/6323.jpg" alt="Input 4">
+                    </div>
+                    <model-viewer src="assets/GLB/6323.glb" alt="A 3D model 4" auto-rotate camera-controls
+                        shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg"></model-viewer>
                 </div>
-                <div class="rounded-lg shadow-md overflow-hidden h-full flex flex-col">
-                    <model-viewer src="assets/GLB/8826.glb" alt="A 3D model of Neil Armstrong" auto-rotate
-                        camera-controls shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg">
-                    </model-viewer>
-                    <p class="text-center font-semibold text-gray-700 py-3 bg-gray-50">Generated 3D Mesh5</p>
+
+                <div class="hover-card flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+                    <div
+                        class="p-3 bg-gray-50 font-semibold text-gray-700 flex justify-between items-center text-sm border-b border-gray-200">
+                        <span>Model 5</span>
+                        <span class="text-indigo-600 text-xs bg-indigo-100 px-2 py-1 rounded">Input / 3D</span>
+                    </div>
+                    <div class="input-thumb-container">
+                        <img src="assets/GLB/8826.jpg" alt="Input 5">
+                    </div>
+                    <model-viewer src="assets/GLB/8826.glb" alt="A 3D model 5" auto-rotate camera-controls
+                        shadow-intensity="1" camera-orbit="0deg 75deg 2m" field-of-view="30deg"></model-viewer>
                 </div>
+
             </div>
         </section>
+
+
 
     </div>
 
     <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
 
-    <script>
-        if (document.getElementById('copy-btn')) {
-            document.getElementById('copy-btn').addEventListener('click', function () {
-                const bibtexText = document.getElementById('bibtex-content').innerText;
-                const tempTextArea = document.createElement('textarea');
-                tempTextArea.value = bibtexText;
-                document.body.appendChild(tempTextArea);
-                tempTextArea.select();
-                try {
-                    document.execCommand('copy');
-                    this.innerText = 'Copied!';
-                    this.classList.add('bg-green-600');
-
-                    setTimeout(() => {
-                        this.innerText = 'Copy';
-                        this.classList.remove('bg-green-600');
-                    }, 2000);
-
-                } catch (err) {
-                    console.error('Failed to copy BibTeX:', err);
-                    this.innerText = 'Error';
-                    this.classList.add('bg-red-600');
-                }
-                document.body.removeChild(tempTextArea);
-            });
-        }
-
-        const tabButtons = document.querySelectorAll('.comparison-tab');
-        const comparisonImages = document.querySelectorAll('.comparison-image');
-
-        if (tabButtons.length > 0) {
-            function showComparison(imageId) {
-                comparisonImages.forEach(img => {
-                    img.classList.add('hidden');
-                });
-                tabButtons.forEach(btn => {
-                    btn.classList.remove('text-blue-600', 'border-blue-600');
-                    btn.classList.add('text-gray-500', 'hover:text-blue-600');
-                });
-                document.getElementById(imageId).classList.remove('hidden');
-                tabButtons.forEach(btn => {
-                    if (btn.getAttribute('onclick').includes(imageId)) {
-                        btn.classList.add('text-blue-600', 'border-blue-600');
-                        btn.classList.remove('text-gray-500', 'hover:text-blue-600');
-                    }
-                });
-            }
-        }
-    </script>
 </body>
 
 </html>
