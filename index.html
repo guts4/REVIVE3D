@@ -113,10 +113,12 @@
                     class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
                     <i class="fas fa-file-pdf"></i> Paper (Coming Soon)
                 </span>
-                <span
-                    class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
-                    <i class="fab fa-github"></i> Code (Coming Soon)
-                </span>
+
+                <a href="https://github.com/guts4/REVIVE3D" target="_blank"
+                    class="flex items-center gap-2 bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-700 transition shadow-sm hover:shadow-md cursor-pointer">
+                    <i class="fab fa-github"></i> Code
+                </a>
+
                 <span
                     class="flex items-center gap-2 bg-gray-200 text-gray-500 px-6 py-2.5 rounded-full font-medium cursor-not-allowed">
                     <i class="fas fa-play-circle"></i> Demo (Coming Soon)
@@ -455,6 +457,7 @@
                         if (viewer.model && viewer.model.materials) {
                             viewer.model.materials.forEach(material => {
                                 if (material.pbrMetallicRoughness) {
+
                                     if (material.pbrMetallicRoughness.baseColorTexture) {
                                         material.pbrMetallicRoughness.baseColorTexture.setTexture(null);
                                     }
@@ -463,7 +466,7 @@
                             });
                         }
                     } catch (e) {
-                        console.warn("Texture Error:", e);
+                        console.warn("Error:", e);
                     }
                 });
             });
