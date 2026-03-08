@@ -17,11 +17,8 @@ Our framework also supports image-conditioned 3D editing by initializing the pro
 
 ## 🚀 Code Release
 
-The official PyTorch implementation, training scripts, and pre-trained models are currently being prepared for release. 
-
-* [ ] Release inference code and pre-trained models
-* [ ] Release training scripts
-* [ ] Release evaluation protocols (Compactness and Normal Anisotropy)
+* [ ] Release **Stage 1** code (Inflated Prior generation)
+* [ ] Release **Stage 2** code (3D Latent Refinement)
 
 **Please stay tuned! The code will be available soon.**
 
