@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIVE 3D | CVPR 2026</title>
+    <meta name="description" content="REVIVE 3D project page for CVPR 2026.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="fonts/avenir-next/stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #f7f6f2;
+            --text: #21404a;
+            --muted: #5f7078;
+            --line: #dbe6e5;
+            --accent: #2d8c84;
+            --accent-soft: #eef7f4;
+            --accent-warm: #f29b63;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Avenir Next', 'AvenirNextCyr', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(242, 155, 99, 0.16), transparent 26%),
+                radial-gradient(circle at top right, rgba(45, 140, 132, 0.12), transparent 24%),
+                linear-gradient(180deg, #fcfbf8 0%, var(--bg) 100%);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 48px 20px 80px;
+        }
+
+        .section {
+            margin-top: 72px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.06em;
+            margin: 0;
+            background: linear-gradient(135deg, #f08f59 0%, #2d8c84 58%, #3b6682 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            margin: 14px auto 0;
+            max-width: 980px;
+            font-size: clamp(1.1rem, 1.75vw, 1.55rem);
+            color: #47626c;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .venue-full {
+            color: var(--muted);
+        }
+
+        .venue-full {
+            margin-top: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            color: #47626c;
+        }
+
+        .venue-accent {
+            background: linear-gradient(135deg, #f08f59 0%, #2d8c84 58%, #3b6682 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta,
+        .affiliation {
+            color: var(--muted);
+        }
+
+        .meta {
+            margin-top: 18px;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .affiliation {
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .button.primary {
+            background: linear-gradient(135deg, #2d8c84 0%, #3c6f93 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .button.disabled {
+            color: #a2a2a2;
+            cursor: not-allowed;
+        }
+
+        .hero-image,
+        .architecture-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.08);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin: 0 0 12px;
+        }
+
+        .section-desc {
+            max-width: 920px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .abstract-box {
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: left;
+            color: #4b5f66;
+            font-size: 1.05rem;
+        }
+
+        .method-box {
+            margin-top: 28px;
+        }
+
+        .comparison-shell,
+        .carousel-shell {
+            margin-top: 28px;
+        }
+
+        .comparison-shell,
+        .carousel-shell {
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .input-image-wrap {
+            margin-bottom: 18px;
+        }
+
+        .input-image-wrap img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--line);
+        }
+
+        .compare-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1.15 / 1;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.92);
+            user-select: none;
+            touch-action: none;
+            --pos: 50%;
+            cursor: ew-resize;
+        }
+
+        .compare-base,
+        .compare-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .compare-base img,
+        .compare-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: white;
+            display: block;
+        }
+
+        .compare-overlay {
+            overflow: hidden;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            clip-path: inset(0 0 0 var(--pos));
+        }
+
+        .compare-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .compare-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 52px;
+            height: 52px;
+            margin-left: -26px;
+            margin-top: -26px;
+            border-radius: 999px;
+            background: rgba(19, 111, 99, 0.95);
+            color: white;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 10px 24px rgba(19, 111, 99, 0.24);
+            pointer-events: auto;
+            cursor: ew-resize;
+            touch-action: none;
+            z-index: 4;
+        }
+
+        .compare-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin: 14px 0 0;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .compare-range {
+            width: 100%;
+            margin-top: 16px;
+            accent-color: var(--accent);
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .nav-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #f3f3f3;
+        }
+
+        .carousel-name {
+            min-width: 220px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .viewer-card,
+        .edit-card {
+            text-align: center;
+        }
+
+        .viewer-card img,
+        .edit-condition img {
+            width: 100%;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.9);
+            object-fit: contain;
+            display: block;
+        }
+
+        .viewer-card img {
+            margin-bottom: 14px;
+            max-height: 300px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 620px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: radial-gradient(circle at 50% 28%, rgba(227, 236, 237, 0.92), rgba(203, 216, 220, 0.95) 55%, rgba(176, 188, 196, 0.98) 100%);
+            --progress-bar-color: var(--accent);
+            --poster-color: transparent;
+        }
+
+        .edit-condition {
+            max-width: 260px;
+            margin: 0 auto 16px;
+        }
+
+        .edit-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .mesh-wrap {
+            position: relative;
+        }
+
+        .mesh-label {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .edit-pair model-viewer {
+            height: 520px;
+        }
+
+        .method-caption {
+            max-width: 980px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            max-width: 980px;
+            margin: 24px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .metric-card {
+            padding: 26px 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.05);
+            text-align: center;
+        }
+
+        .metric-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .metric-card p {
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .equation {
+            min-height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .equation mjx-container {
+            margin: 0 auto !important;
+            font-size: 142% !important;
+        }
+
+        .result-grid,
+        .ablation-grid {
+            max-width: 1040px;
+            margin: 24px auto 0;
+            display: grid;
+            gap: 22px;
+            text-align: left;
+        }
+
+        .result-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ablation-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .result-card,
+        .ablation-card {
+            padding: 22px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.05);
+        }
+
+        .result-card h3,
+        .ablation-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+
+        .result-card p,
+        .ablation-card p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .result-card img,
+        .ablation-card img {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .result-card.wide,
+        .ablation-card.wide {
+            grid-column: 1 / -1;
+        }
+
+        .ablation-card.wide img,
+        .result-card.wide img {
+            aspect-ratio: auto;
+            object-fit: contain;
+        }
+
+        .ablation-card.square img {
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .quant-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        .quant-table th,
+        .quant-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e8efef;
+            text-align: center;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .quant-table th:first-child,
+        .quant-table td:first-child {
+            text-align: left;
+        }
+
+        .quant-table thead th {
+            background: #f3f8f7;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .quant-table tbody tr.highlight {
+            background: #f4fbf9;
+            font-weight: 600;
+        }
+
+        .quant-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .result-grid,
+            .ablation-grid,
+            .metrics-grid,
+            .edit-pair {
+                grid-template-columns: 1fr;
+            }
+
+            model-viewer,
+            .edit-pair model-viewer {
+                height: 460px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 32px 14px 56px;
+            }
+
+            .section {
+                margin-top: 56px;
+            }
+
+            model-viewer,
+            .edit-pair model-viewer {
+                height: 380px;
+            }
+
+            .carousel-name {
+                min-width: 140px;
+            }
+
+            .subtitle,
+            .venue-full {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <section class="section" style="margin-top: 0;">
+            <h1 class="title">REVIVE 3D</h1>
+            <p class="subtitle">Refinement via Encoded Voluminous Inflated Prior for Volume Enhancement</p>
+            <div class="venue-full">Conference on Computer Vision and Pattern Recognition <span class="venue-accent">CVPR 2026</span></div>
+            <div class="meta">Hankyeol Lee &nbsp; Wooyeol Baek &nbsp; Seongdo Kim &nbsp; Jongyoo Kim<sup>&dagger;</sup></div>
+            <div class="affiliation">Yonsei University</div>
+
+            <div class="button-row">
+                <span class="button disabled"><i class="fa-regular fa-file-lines"></i> Paper Coming Soon</span>
+                <a class="button primary" href="https://github.com/guts4/REVIVE3D" target="_blank" rel="noreferrer"><i
+                        class="fa-brands fa-github"></i> Code</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Abstract</h2>
+            <div class="abstract-box">
+                Recent generative models have shown strong performance in generating diverse 3D assets from 2D images, a
+                fundamental research topic in computer vision and graphics. However, these models still struggle to generate
+                voluminous 3D assets when the input is a <strong>flat image</strong> that provides limited 3D cues. We
+                introduce <strong>REVIVE 3D</strong>, a two-stage, plug-and-play pipeline for generating voluminous 3D assets
+                from flat images. In Stage 1, we construct an <strong>Inflated Prior</strong> by inflating the foreground
+                silhouette to recover global volume and superimposing part-aware details to capture local structure. In Stage
+                2, 3D Latent Refinement injects Gaussian noise into the Inflated Prior's latent and then denoises it, using
+                the prior's geometric cues to leverage the backbone's pretrained 3D knowledge. Furthermore, our framework
+                supports image-conditioned 3D editing. To quantify volume and surface flatness, we propose
+                <strong>Compactness</strong> and <strong>Normal Anisotropy</strong>. We validate Compactness and Normal
+                Anisotropy through a user study, showing that these metrics align with human perception of volume and quality.
+                We show that REVIVE 3D achieves state-of-the-art performance on a challenging flat image dataset, based on
+                extensive qualitative and quantitative evaluations.
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Method</h2>
+            <div class="method-box">
+                <img class="architecture-image" src="assets/architecture.png" alt="REVIVE 3D architecture">
+            </div>
+            <p class="method-caption">
+                Overview of our method. <strong>Stage 1</strong> generates the Inflated Prior. We create a Base 3D from
+                the Silhouette Mask and Detail 3D from Segmentation Masks, then combine them via superimposing.
+                <strong>Stage 2</strong> refines the Inflated Prior by encoding the mesh, injecting noise, denoising it
+                with the image condition, and decoding the result into the Refined 3D mesh.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Comparison</h2>
+            <p class="section-desc">Drag left and right to compare baseline results with ours.</p>
+            <div class="comparison-shell">
+                <div class="input-image-wrap">
+                    <img id="compare-input" src="" alt="Comparison input image">
+                </div>
+
+                <div class="compare-labels">
+                    <span id="compare-left-label"></span>
+                    <span>Ours</span>
+                </div>
+
+                <div class="compare-stage" id="compare-stage">
+                    <div class="compare-base"><img id="compare-base" src="" alt="Baseline comparison image"></div>
+                    <div class="compare-overlay" id="compare-overlay">
+                        <img id="compare-ours" src="" alt="Ours comparison image">
+                    </div>
+                    <div class="compare-handle" id="compare-handle"><i class="fa-solid fa-left-right"></i></div>
+                </div>
+
+                <input id="compare-range" class="compare-range" type="range" min="0" max="100" value="50"
+                    aria-label="Comparison slider">
+
+                <div class="carousel-controls">
+                    <button id="prev-compare" class="nav-btn" aria-label="Previous comparison"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="compare-name" class="carousel-name"></div>
+                    <button id="next-compare" class="nav-btn" aria-label="Next comparison"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Generated Mesh Gallery</h2>
+            <div class="carousel-shell">
+                <div id="generation-card"></div>
+                <div class="carousel-controls">
+                    <button id="prev-generation" class="nav-btn" aria-label="Previous generation"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="generation-name" class="carousel-name"></div>
+                    <button id="next-generation" class="nav-btn" aria-label="Next generation"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Editing Results</h2>
+            <div class="carousel-shell">
+                <div id="edit-card"></div>
+                <div class="carousel-controls">
+                    <button id="prev-edit" class="nav-btn" aria-label="Previous edit"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="edit-name" class="carousel-name"></div>
+                    <button id="next-edit" class="nav-btn" aria-label="Next edit"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Metrics</h2>
+            <p class="section-desc">Compactness measures volume, and Normal Anisotropy measures flatness.</p>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Compactness (C)</h3>
+                    <div class="equation">\[ C = \frac{36\pi V^2}{S^3} \]</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Normal Anisotropy (NA)</h3>
+                    <div class="equation">\[ \mathrm{NA}(\mathcal{M}) = 1 - \frac{-\sum_{k=1}^{K} p_k \log(p_k + \epsilon)}{\log K} \]</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Quantitative Results</h2>
+            <div class="result-grid">
+                <div class="result-card wide">
+                    <div class="table-wrap">
+                        <table class="quant-table">
+                            <thead>
+                                <tr>
+                                    <th>Models</th>
+                                    <th>Uni3D ↑</th>
+                                    <th>ULIP ↑</th>
+                                    <th>C ↑</th>
+                                    <th>NA ↓</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Trellis</td><td>0.2736</td><td>0.1241</td><td>0.1748</td><td>0.1282</td></tr>
+                                <tr><td>DrawingSpinUp</td><td>0.2335</td><td>0.1164</td><td>0.1604</td><td>0.1332</td></tr>
+                                <tr><td>Hunyuan3D-Omni</td><td>0.2816</td><td>0.1257</td><td>0.1707</td><td>0.1120</td></tr>
+                                <tr><td>Direct3D</td><td>0.2796</td><td>0.1315</td><td>0.2012</td><td>0.1019</td></tr>
+                                <tr><td>Hunyuan3D-2.1</td><td>0.2759</td><td>0.1193</td><td>0.1408</td><td>0.1347</td></tr>
+                                <tr class="highlight"><td>Ours (Hunyuan3D-2.1)</td><td>0.3043</td><td>0.1265</td><td>0.2179</td><td>0.0767</td></tr>
+                                <tr class="highlight"><td>Ours (Direct3D)</td><td>0.3097</td><td>0.1375</td><td>0.2178</td><td>0.0908</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            The website template is borrowed from
+            <a href="https://github.com/microsoft/TRELLIS/tree/website" target="_blank" rel="noreferrer">TRELLIS</a>.
+        </footer>
+    </main>
+
+    <script>
+        const comparisonItems = [
+            {
+                title: 'DrawingSpinUp',
+                input: 'assets/images/131_DrawingSpinUp/131.jpg',
+                baseline: 'assets/images/131_DrawingSpinUp/000_DrawingSpinUp.png',
+                ours: 'assets/images/131_DrawingSpinUp/000_Ours.png'
+            },
+            {
+                title: 'Direct3D',
+                input: 'assets/images/1669_Direct3D/1669.jpg',
+                baseline: 'assets/images/1669_Direct3D/000_Direct3D.png',
+                ours: 'assets/images/1669_Direct3D/000_Ours.png'
+            },
+            {
+                title: 'Hunyuan3D-2.1',
+                input: 'assets/images/3246_Hunyuan3D-2.1/3246.jpg',
+                baseline: 'assets/images/3246_Hunyuan3D-2.1/000_Hunyuan3D-2.1.png',
+                ours: 'assets/images/3246_Hunyuan3D-2.1/000_Ours.png'
+            },
+            {
+                title: 'Hunyuan3D-Omni',
+                input: 'assets/images/6323_Hunyuan3D-Omni/6323.jpg',
+                baseline: 'assets/images/6323_Hunyuan3D-Omni/000_Hunyuan3D-Omni.png',
+                ours: 'assets/images/6323_Hunyuan3D-Omni/000_Ours.png'
+            },
+            {
+                title: 'TRELLIS',
+                input: 'assets/images/7245_Trellis/7245.jpg',
+                baseline: 'assets/images/7245_Trellis/000_Trellis.png',
+                ours: 'assets/images/7245_Trellis/000_Ours.png'
+            }
+        ];
+
+        const generationItems = ['1224', '2087', '5021', '6323', '8826'];
+        const editItems = ['12', '14', '15', '18'];
+
+        function createGenerationCard(id, index) {
+            return `
+                <div class="viewer-card">
+                    <img src="assets/GLB/${id}.jpg" alt="Input image ${index + 1}">
+                    <model-viewer src="assets/GLB/${id}.glb" alt="3D mesh ${index + 1}" camera-controls auto-rotate
+                        auto-rotate-delay="0" rotation-per-second="18deg" shadow-intensity="0.9" exposure="0.92"
+                        camera-orbit="0deg 75deg auto" field-of-view="24deg" min-camera-orbit="auto auto auto"
+                        max-camera-orbit="auto auto auto" environment-image="neutral" tone-mapping="commerce"
+                        interaction-prompt="none"></model-viewer>
+                </div>
+            `;
+        }
+
+        function createEditCard(id) {
+            return `
+                <div class="edit-card">
+                    <div class="edit-condition">
+                        <img src="assets/Edit/image/${id}.png" alt="Edit condition ${id}">
+                    </div>
+                    <div class="edit-pair">
+                        <div class="mesh-wrap">
+                            <div class="mesh-label">Original Mesh</div>
+                            <model-viewer class="untextured-mesh" src="assets/Edit/original_glb/${id}.glb" alt="Original mesh ${id}"
+                                camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="14deg"
+                                shadow-intensity="0.9" exposure="0.92" camera-orbit="0deg 75deg auto" field-of-view="24deg"
+                                environment-image="neutral" tone-mapping="commerce" interaction-prompt="none"></model-viewer>
+                        </div>
+                        <div class="mesh-wrap">
+                            <div class="mesh-label">Ours</div>
+                            <model-viewer src="assets/Edit/ours/${id}.glb" alt="Edited mesh ${id}" camera-controls auto-rotate
+                                auto-rotate-delay="0" rotation-per-second="14deg" shadow-intensity="0.9" exposure="0.92"
+                                camera-orbit="0deg 75deg auto" field-of-view="24deg" environment-image="neutral" tone-mapping="commerce"
+                                interaction-prompt="none"></model-viewer>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const compareInput = document.getElementById('compare-input');
+        const compareBase = document.getElementById('compare-base');
+        const compareOurs = document.getElementById('compare-ours');
+        const compareOverlay = document.getElementById('compare-overlay');
+        const compareHandle = document.getElementById('compare-handle');
+        const compareRange = document.getElementById('compare-range');
+        const compareLeftLabel = document.getElementById('compare-left-label');
+        const compareName = document.getElementById('compare-name');
+        const compareStage = document.getElementById('compare-stage');
+
+        let compareIndex = 0;
+        let generationIndex = 0;
+        let editIndex = 0;
+        let dragging = false;
+
+        function updateComparePosition(value) {
+            const clamped = Math.max(0, Math.min(100, value));
+            compareStage.style.setProperty('--pos', `${clamped}%`);
+            compareHandle.style.left = `${clamped}%`;
+            compareRange.value = clamped;
+        }
+
+        function renderComparison(index) {
+            const item = comparisonItems[index];
+            compareInput.src = item.input;
+            compareBase.src = item.baseline;
+            compareOurs.src = item.ours;
+            compareLeftLabel.textContent = item.title;
+            compareName.textContent = `${item.title}  ${index + 1} / ${comparisonItems.length}`;
+            updateComparePosition(50);
+        }
+
+        function changeComparison(step) {
+            compareIndex = (compareIndex + step + comparisonItems.length) % comparisonItems.length;
+            renderComparison(compareIndex);
+        }
+
+        function renderGeneration(index) {
+            document.getElementById('generation-card').innerHTML = createGenerationCard(generationItems[index], index);
+            document.getElementById('generation-name').textContent = `${index + 1} / ${generationItems.length}`;
+        }
+
+        function changeGeneration(step) {
+            generationIndex = (generationIndex + step + generationItems.length) % generationItems.length;
+            renderGeneration(generationIndex);
+        }
+
+        function renderEdit(index) {
+            document.getElementById('edit-card').innerHTML = createEditCard(editItems[index]);
+            document.getElementById('edit-name').textContent = `${index + 1} / ${editItems.length}`;
+            stylizeOriginalMeshes();
+        }
+
+        function changeEdit(step) {
+            editIndex = (editIndex + step + editItems.length) % editItems.length;
+            renderEdit(editIndex);
+        }
+
+        function pointerToValue(clientX) {
+            const rect = compareStage.getBoundingClientRect();
+            return ((clientX - rect.left) / rect.width) * 100;
+        }
+
+        compareRange.addEventListener('input', (event) => updateComparePosition(event.target.value));
+
+        function startCompareDrag(event) {
+            dragging = true;
+            updateComparePosition(pointerToValue(event.clientX));
+        }
+
+        compareStage.addEventListener('pointerdown', startCompareDrag);
+        compareHandle.addEventListener('pointerdown', startCompareDrag);
+
+        window.addEventListener('pointermove', (event) => {
+            if (!dragging) return;
+            updateComparePosition(pointerToValue(event.clientX));
+        });
+
+        const stopDragging = () => {
+            dragging = false;
+        };
+
+        window.addEventListener('pointerup', stopDragging);
+        window.addEventListener('pointercancel', stopDragging);
+        document.getElementById('prev-compare').addEventListener('click', () => changeComparison(-1));
+        document.getElementById('next-compare').addEventListener('click', () => changeComparison(1));
+        document.getElementById('prev-generation').addEventListener('click', () => changeGeneration(-1));
+        document.getElementById('next-generation').addEventListener('click', () => changeGeneration(1));
+        document.getElementById('prev-edit').addEventListener('click', () => changeEdit(-1));
+        document.getElementById('next-edit').addEventListener('click', () => changeEdit(1));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') changeComparison(-1);
+            if (event.key === 'ArrowRight') changeComparison(1);
+        });
+
+        function stylizeOriginalMeshes() {
+            document.querySelectorAll('model-viewer.untextured-mesh').forEach((viewer) => {
+                if (viewer.dataset.styled === 'true') return;
+                viewer.dataset.styled = 'true';
+                viewer.addEventListener('load', () => {
+                    try {
+                        if (!viewer.model || !viewer.model.materials) return;
+                        viewer.model.materials.forEach((material) => {
+                            if (!material.pbrMetallicRoughness) return;
+                            if (material.pbrMetallicRoughness.baseColorTexture) {
+                                material.pbrMetallicRoughness.baseColorTexture.setTexture(null);
+                            }
+                            material.pbrMetallicRoughness.setBaseColorFactor([0.72, 0.72, 0.72, 1]);
+                            material.pbrMetallicRoughness.setMetallicFactor(0.04);
+                            material.pbrMetallicRoughness.setRoughnessFactor(0.9);
+                        });
+                    } catch (error) {
+                        console.warn('Failed to simplify original mesh texture.', error);
+                    }
+                }, { once: true });
+            });
+        }
+
+        renderComparison(compareIndex);
+        renderGeneration(generationIndex);
+        renderEdit(editIndex);
+    </script>
+</body>
+
+</html>
