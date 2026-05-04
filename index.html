@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIVE 3D | CVPR 2026</title>
+    <meta name="description" content="REVIVE 3D project page for CVPR 2026.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="fonts/avenir-next/stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #f7f6f2;
+            --text: #1f3d5a;
+            --muted: #637b92;
+            --line: #d8e4f0;
+            --accent: #5da9dd;
+            --accent-soft: #eff7fd;
+            --accent-warm: #7cb8ea;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Avenir Next', 'AvenirNextCyr', sans-serif;
+            background: #fbfdff;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 48px 20px 80px;
+        }
+
+        .section {
+            margin-top: 72px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.06em;
+            margin: 0;
+            background: linear-gradient(135deg, #76b7ea 0%, #5da9dd 58%, #4d82c3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            margin: 14px auto 0;
+            max-width: 980px;
+            font-size: clamp(1.1rem, 1.75vw, 1.55rem);
+            color: #5d7892;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .venue-full {
+            color: var(--muted);
+        }
+
+        .venue-full {
+            margin-top: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            color: #5d7892;
+        }
+
+        .venue-accent {
+            background: linear-gradient(135deg, #76b7ea 0%, #5da9dd 58%, #4d82c3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta,
+        .affiliation {
+            color: var(--muted);
+        }
+
+        .meta {
+            margin-top: 18px;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .affiliation {
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .button.primary {
+            background: linear-gradient(135deg, #5da9dd 0%, #4d82c3 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .button.disabled {
+            color: #a2a2a2;
+            cursor: not-allowed;
+        }
+
+        .hero-image,
+        .architecture-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.08);
+        }
+
+        .hero-note {
+            max-width: 760px;
+            margin: 14px auto 0;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin: 0 0 12px;
+        }
+
+        .section-desc {
+            max-width: 920px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .abstract-box {
+            max-width: 1010px;
+            margin: 0 auto;
+            text-align: left;
+            color: #4b5f66;
+            font-size: 1.05rem;
+            padding: 28px 32px;
+            border-radius: 24px;
+            border: 1px solid #d9e5e2;
+            background: linear-gradient(180deg, rgba(240, 247, 254, 0.96), rgba(255, 255, 255, 0.92));
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.06);
+        }
+
+        .method-stage-grid,
+        .comparison-grid,
+        .generation-grid {
+            max-width: 1080px;
+            margin: 24px auto 0;
+            display: grid;
+            gap: 22px;
+        }
+
+        .method-stage-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .generation-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            max-width: 1400px;
+        }
+
+        .comparison-card,
+        .generation-card,
+        .method-stage {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.05);
+            overflow: hidden;
+        }
+
+        .comparison-card h3,
+        .generation-card h3,
+        .method-stage h3 {
+            margin: 0;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+
+        .comparison-card p,
+        .generation-card p,
+        .method-stage p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .method-stage {
+            padding: 22px;
+            text-align: left;
+        }
+
+        .stage-kicker {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #4d82c3;
+            font-weight: 700;
+            font-size: 0.92rem;
+            letter-spacing: 0.02em;
+        }
+
+        .method-box {
+            margin-top: 28px;
+        }
+
+        .comparison-shell,
+        .carousel-shell {
+            margin-top: 28px;
+        }
+
+        .comparison-shell,
+        .carousel-shell {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .side-carousel {
+            display: grid;
+            grid-template-columns: 52px minmax(0, 1fr) 52px;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .input-image-wrap {
+            margin-bottom: 18px;
+        }
+
+        .input-image-wrap img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--line);
+        }
+
+        .compare-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1.15 / 1;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.92);
+            user-select: none;
+            touch-action: none;
+            --pos: 50%;
+            cursor: ew-resize;
+        }
+
+        .compare-base,
+        .compare-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .compare-base img,
+        .compare-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: white;
+            display: block;
+        }
+
+        .compare-overlay {
+            overflow: hidden;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            clip-path: inset(0 0 0 var(--pos));
+        }
+
+        .compare-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .compare-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 52px;
+            height: 52px;
+            margin-left: -26px;
+            margin-top: -26px;
+            border-radius: 999px;
+            background: rgba(93, 169, 221, 0.95);
+            color: white;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 10px 24px rgba(93, 169, 221, 0.24);
+            pointer-events: auto;
+            cursor: ew-resize;
+            touch-action: none;
+            z-index: 4;
+        }
+
+        .compare-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin: 14px 0 0;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .comparison-card .compare-labels {
+            margin: 12px 16px 0;
+            font-size: 0.92rem;
+        }
+
+        .comparison-card {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            align-items: start;
+        }
+
+        .comparison-card .input-image-wrap {
+            margin: 0;
+        }
+
+        .comparison-card .compare-stage {
+            margin: 0;
+            aspect-ratio: 1 / 1;
+        }
+
+        .comparison-card .compare-range {
+            width: 100%;
+            margin: 14px 0 0;
+        }
+
+        .generation-card {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .generation-card img {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.92);
+            object-fit: contain;
+            aspect-ratio: 1 / 1;
+            min-height: 420px;
+            height: 100%;
+            margin-bottom: 0;
+        }
+
+        .generation-card model-viewer {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            min-height: 420px;
+            height: auto;
+        }
+
+        .abstract-highlight {
+            font-weight: 700;
+            background: linear-gradient(135deg, #76b7ea 0%, #5da9dd 58%, #4d82c3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-indicator {
+            min-width: 170px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #444;
+            text-align: center;
+        }
+
+        .compare-range {
+            width: 100%;
+            margin-top: 16px;
+            accent-color: var(--accent);
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .side-carousel .nav-btn {
+            width: 52px;
+            height: 52px;
+        }
+
+        .nav-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #f3f3f3;
+        }
+
+        .carousel-name {
+            min-width: 220px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .viewer-card,
+        .edit-card {
+            text-align: center;
+        }
+
+        .viewer-card img,
+        .edit-condition img {
+            width: 100%;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.9);
+            object-fit: contain;
+            display: block;
+        }
+
+        .viewer-card img {
+            margin-bottom: 14px;
+            max-height: 360px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 620px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: radial-gradient(circle at 50% 28%, rgba(122, 143, 166, 0.92), rgba(88, 108, 132, 0.96) 55%, rgba(55, 72, 92, 0.98) 100%);
+            --progress-bar-color: var(--accent);
+            --poster-color: transparent;
+        }
+
+        .edit-condition {
+            max-width: 360px;
+            margin: 0 auto 16px;
+        }
+
+        .edit-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .mesh-wrap {
+            position: relative;
+        }
+
+        .mesh-label {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .edit-pair model-viewer {
+            height: 520px;
+        }
+
+        .method-caption {
+            max-width: 980px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            max-width: 980px;
+            margin: 24px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .metric-card {
+            padding: 26px 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.05);
+            text-align: center;
+        }
+
+        .metric-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .metric-card p {
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .equation {
+            min-height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .equation mjx-container {
+            margin: 0 auto !important;
+            font-size: 142% !important;
+        }
+
+        .result-grid,
+        .ablation-grid {
+            max-width: 1040px;
+            margin: 24px auto 0;
+            display: grid;
+            gap: 22px;
+            text-align: left;
+        }
+
+        .result-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ablation-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .result-card,
+        .ablation-card {
+            padding: 22px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(34, 77, 83, 0.05);
+        }
+
+        .result-card h3,
+        .ablation-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+
+        .result-card p,
+        .ablation-card p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .result-card img,
+        .ablation-card img {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .result-card.wide,
+        .ablation-card.wide {
+            grid-column: 1 / -1;
+        }
+
+        .ablation-card.wide img,
+        .result-card.wide img {
+            aspect-ratio: auto;
+            object-fit: contain;
+        }
+
+        .ablation-card.square img {
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .quant-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        .quant-table th,
+        .quant-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e8efef;
+            text-align: center;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .quant-table th:first-child,
+        .quant-table td:first-child {
+            text-align: left;
+        }
+
+        .quant-table thead th {
+            background: #eef5fb;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .quant-table tbody tr.highlight {
+            background: #f1f8fe;
+            font-weight: 600;
+        }
+
+        .quant-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .method-stage-grid,
+            .result-grid,
+            .ablation-grid,
+            .metrics-grid,
+            .comparison-grid,
+            .generation-grid,
+            .edit-pair {
+                grid-template-columns: 1fr;
+            }
+
+            .generation-card {
+                grid-template-columns: 1fr;
+            }
+
+            .side-carousel {
+                grid-template-columns: 1fr;
+            }
+
+            model-viewer,
+            .edit-pair model-viewer {
+                height: 460px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 32px 14px 56px;
+            }
+
+            .section {
+                margin-top: 56px;
+            }
+
+            model-viewer,
+            .edit-pair model-viewer {
+                height: 380px;
+            }
+
+            .carousel-name {
+                min-width: 140px;
+            }
+
+            .subtitle,
+            .venue-full {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <section class="section" style="margin-top: 0;">
+            <h1 class="title">REVIVE 3D</h1>
+            <p class="subtitle">Refinement via Encoded Voluminous Inflated Prior for Volume Enhancement</p>
+            <p class="section-desc" style="margin-top: 14px;">REVIVE 3D generates voluminous 3D assets from flat images.</p>
+            <div class="venue-full">Conference on Computer Vision and Pattern Recognition <span class="venue-accent">CVPR 2026</span></div>
+            <div class="meta">Hankyeol Lee &nbsp; Wooyeol Baek &nbsp; Seongdo Kim &nbsp; Jongyoo Kim<sup>&dagger;</sup></div>
+            <div class="affiliation">Yonsei University</div>
+
+            <div class="button-row">
+            <a class="button"
+               href="https://arxiv.org/abs/2604.27504"
+               target="_blank"
+               rel="noreferrer">
+                <i class="fa-regular fa-file-lines"></i> arXiv
+            </a>
+        
+            <a class="button primary"
+               href="https://github.com/guts4/REVIVE3D"
+               target="_blank"
+               rel="noreferrer">
+                <i class="fa-brands fa-github"></i> Code
+            </a>
+        </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Abstract</h2>
+            <div class="abstract-box">
+                Recent generative models have shown strong performance in generating diverse 3D assets from 2D images, a
+                fundamental research topic in computer vision and graphics. However, these models still struggle to generate
+                voluminous 3D assets when the input is a flat image that provides limited 3D cues. We
+                introduce <span class="abstract-highlight">REVIVE 3D</span>, a two-stage, plug-and-play pipeline for generating voluminous 3D assets
+                from flat images. In Stage 1, we construct an Inflated Prior by inflating the foreground
+                silhouette to recover global volume and superimposing part-aware details to capture local structure. In Stage
+                2, 3D Latent Refinement injects Gaussian noise into the Inflated Prior's latent and then denoises it, using
+                the prior's geometric cues to leverage the backbone's pretrained 3D knowledge. Furthermore, our framework
+                supports image-conditioned 3D editing. To quantify volume and surface flatness, we propose
+                Compactness and Normal Anisotropy. We validate Compactness and Normal
+                Anisotropy through a user study, showing that these metrics align with human perception of volume and quality.
+                We show that REVIVE 3D achieves state-of-the-art performance on a challenging flat image dataset, based on
+                extensive qualitative and quantitative evaluations.
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Flat Image to 3D Generation</h2>
+            <p class="section-desc">Explore four generated meshes per page. We provide twelve image-conditioned generation results in total.</p>
+            <div class="carousel-shell">
+                <div class="side-carousel">
+                    <button id="prev-generation" class="nav-btn" aria-label="Previous generation"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div>
+                        <div id="generation-page" class="generation-grid"></div>
+                        <div class="carousel-controls">
+                            <div id="generation-name" class="page-indicator"></div>
+                        </div>
+                    </div>
+                    <button id="next-generation" class="nav-btn" aria-label="Next generation"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Comparison with Baselines</h2>
+            <div class="comparison-shell side-carousel">
+                <button id="prev-compare" class="nav-btn" aria-label="Previous comparison page"><i class="fa-solid fa-chevron-left"></i></button>
+                <div>
+                    <div id="comparison-grid"></div>
+                    <div class="carousel-controls">
+                        <div id="compare-name" class="page-indicator"></div>
+                    </div>
+                </div>
+                <button id="next-compare" class="nav-btn" aria-label="Next comparison page"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Editing Results</h2>
+            <div class="carousel-shell">
+                <div id="edit-card"></div>
+                <div class="carousel-controls">
+                    <button id="prev-edit" class="nav-btn" aria-label="Previous edit"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="edit-name" class="carousel-name"></div>
+                    <button id="next-edit" class="nav-btn" aria-label="Next edit"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Method</h2>
+            <div class="method-box">
+                <img class="architecture-image" src="assets/architecture.png" alt="REVIVE 3D architecture">
+            </div>
+            <div class="method-stage-grid">
+                <div class="method-stage">
+                    <span class="stage-kicker">Stage 1</span>
+                    <h3>Inflated Prior</h3>
+                    <p>We recover missing volume from the foreground silhouette and add part-aware local cues through superimposing.</p>
+                </div>
+                <div class="method-stage">
+                    <span class="stage-kicker">Stage 2</span>
+                    <h3>3D Latent Refinement</h3>
+                    <p>We refine the inflated prior in the backbone latent space to obtain geometry that is both more plausible and more image-consistent.</p>
+                </div>
+            </div>
+            <p class="method-caption">
+                Overview of our method. <strong>Stage 1</strong> generates the Inflated Prior. We create a Base 3D from
+                the Silhouette Mask and Detail 3D from Segmentation Masks, then combine them via superimposing.
+                <strong>Stage 2</strong> refines the Inflated Prior by encoding the mesh, injecting noise, denoising it
+                with the image condition, and decoding the result into the Refined 3D mesh.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Quantitative Results</h2>
+            <p class="section-desc">Uni3D and ULIP show that our results are the most semantically aligned with the input image, while Compactness (C) and Normal Anisotropy (NA) show that they are the most voluminous and the least flat.</p>
+            <div class="result-grid">
+                <div class="result-card wide">
+                    <div class="table-wrap">
+                        <table class="quant-table">
+                            <thead>
+                                <tr>
+                                    <th>Models</th>
+                                    <th>Uni3D ↑</th>
+                                    <th>ULIP ↑</th>
+                                    <th>C ↑</th>
+                                    <th>NA ↓</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Trellis</td><td>0.2736</td><td>0.1241</td><td>0.1748</td><td>0.1282</td></tr>
+                                <tr><td>DrawingSpinUp</td><td>0.2335</td><td>0.1164</td><td>0.1604</td><td>0.1332</td></tr>
+                                <tr><td>Hunyuan3D-Omni</td><td>0.2816</td><td>0.1257</td><td>0.1707</td><td>0.1120</td></tr>
+                                <tr><td>Direct3D</td><td>0.2796</td><td>0.1315</td><td>0.2012</td><td>0.1019</td></tr>
+                                <tr><td>Hunyuan3D-2.1</td><td>0.2759</td><td>0.1193</td><td>0.1408</td><td>0.1347</td></tr>
+                                <tr class="highlight"><td>Ours (Hunyuan3D-2.1)</td><td>0.3043</td><td>0.1265</td><td>0.2179</td><td>0.0767</td></tr>
+                                <tr class="highlight"><td>Ours (Direct3D)</td><td>0.3097</td><td>0.1375</td><td>0.2178</td><td>0.0908</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 class="section-title">BibTeX</h2>
+        
+            <div class="abstract-box" style="overflow-x: auto;">
+        <pre style="margin:0; font-family:'Courier New', monospace; line-height:1.6; white-space:pre;">@inproceedings{lee2026revive3d,
+          author    = {Lee, Hankyeol and Baek, Wooyeol and Kim, Seongdo and Kim, Jongyoo},
+          title     = {REVIVE 3D: Refinement via Encoded Voluminous Inflated Prior for Volume Enhancement},
+          booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference},
+          year      = {2026}
+        }</pre>
+            </div>
+        </section>
+
+        <footer>
+            More project resources will be added as the paper materials become available.<br>
+            The website template is borrowed from
+            <a href="https://github.com/microsoft/TRELLIS/tree/website" target="_blank" rel="noreferrer">TRELLIS</a>.
+        </footer>
+    </main>
+
+    <script>
+        const comparisonItems = [
+            {
+                title: 'DrawingSpinUp',
+                input: 'assets/images/131_DrawingSpinUp/131.jpg',
+                baseline: 'assets/images/131_DrawingSpinUp/000_DrawingSpinUp.png',
+                ours: 'assets/images/131_DrawingSpinUp/000_Ours.png'
+            },
+            {
+                title: 'Direct3D',
+                input: 'assets/images/1669_Direct3D/1669.jpg',
+                baseline: 'assets/images/1669_Direct3D/000_Direct3D.png',
+                ours: 'assets/images/1669_Direct3D/000_Ours.png'
+            },
+            {
+                title: 'Hunyuan3D-2.1',
+                input: 'assets/images/3246_Hunyuan3D-2.1/3246.jpg',
+                baseline: 'assets/images/3246_Hunyuan3D-2.1/000_Hunyuan3D-2.1.png',
+                ours: 'assets/images/3246_Hunyuan3D-2.1/000_Ours.png'
+            },
+            {
+                title: 'Hunyuan3D-Omni',
+                input: 'assets/images/6323_Hunyuan3D-Omni/6323.jpg',
+                baseline: 'assets/images/6323_Hunyuan3D-Omni/000_Hunyuan3D-Omni.png',
+                ours: 'assets/images/6323_Hunyuan3D-Omni/000_Ours.png'
+            },
+            {
+                title: 'TRELLIS',
+                input: 'assets/images/7245_Trellis/7245.jpg',
+                baseline: 'assets/images/7245_Trellis/000_Trellis.png',
+                ours: 'assets/images/7245_Trellis/000_Ours.png'
+            }
+        ];
+
+        const generationItems = ['1224', '1685', '2024', '2087', '3627', '4427', '4829', '5021', '6323', '7245', '7454', '8826'];
+        const editItems = ['12', '14', '15', '18'];
+
+        function createComparisonCard(item) {
+            return `
+                <div class="comparison-card">
+                    <div class="input-image-wrap">
+                        <img src="${item.input}" alt="Input image for ${item.title}">
+                    </div>
+                    <div>
+                        <div class="compare-stage" data-compare>
+                            <div class="compare-base"><img src="${item.baseline}" alt="Baseline result for ${item.title}"></div>
+                            <div class="compare-overlay" data-overlay>
+                                <img src="${item.ours}" alt="Our result for ${item.title}">
+                            </div>
+                            <div class="compare-handle" data-handle><i class="fa-solid fa-left-right"></i></div>
+                        </div>
+                        <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Comparison slider for ${item.title}">
+                    </div>
+                </div>
+            `;
+        }
+
+        function createGenerationCard(id, index) {
+            return `
+                <div class="generation-card">
+                    <img src="assets/GLB/${id}.jpg" alt="Input image ${index + 1}">
+                    <model-viewer src="assets/GLB/${id}.glb" alt="3D mesh ${index + 1}" camera-controls auto-rotate
+                        auto-rotate-delay="0" rotation-per-second="18deg" shadow-intensity="0.9" exposure="0.92"
+                        camera-orbit="0deg 75deg 105%" field-of-view="16deg" min-camera-orbit="auto auto 60%"
+                        max-camera-orbit="auto auto 220%" environment-image="neutral" tone-mapping="commerce"
+                        interaction-prompt="none"></model-viewer>
+                </div>
+            `;
+        }
+
+        function createEditCard(id) {
+            return `
+                <div class="edit-card">
+                    <div class="edit-condition">
+                        <img src="assets/Edit/image/${id}.png" alt="Edit condition ${id}">
+                    </div>
+                    <div class="edit-pair">
+                        <div class="mesh-wrap">
+                            <div class="mesh-label">Original Mesh</div>
+                            <model-viewer class="untextured-mesh" src="assets/Edit/original_glb/${id}.glb" alt="Original mesh ${id}"
+                                camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="14deg"
+                                shadow-intensity="0.9" exposure="0.92" camera-orbit="0deg 75deg auto" field-of-view="24deg"
+                                environment-image="neutral" tone-mapping="commerce" interaction-prompt="none"></model-viewer>
+                        </div>
+                        <div class="mesh-wrap">
+                            <div class="mesh-label">Ours</div>
+                            <model-viewer src="assets/Edit/ours/${id}.glb" alt="Edited mesh ${id}" camera-controls auto-rotate
+                                auto-rotate-delay="0" rotation-per-second="14deg" shadow-intensity="0.9" exposure="0.92"
+                                camera-orbit="0deg 75deg auto" field-of-view="24deg" environment-image="neutral" tone-mapping="commerce"
+                                interaction-prompt="none"></model-viewer>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        let compareIndex = 0;
+        let generationIndex = 0;
+        let editIndex = 0;
+
+        function initializeComparisonSliders() {
+            document.querySelectorAll('[data-compare]').forEach((stage) => {
+                if (stage.dataset.bound === 'true') return;
+                stage.dataset.bound = 'true';
+                const handle = stage.querySelector('[data-handle]');
+                const range = stage.parentElement.querySelector('.compare-range');
+                let dragging = false;
+
+                const update = (value) => {
+                    const clamped = Math.max(0, Math.min(100, value));
+                    stage.style.setProperty('--pos', `${clamped}%`);
+                    handle.style.left = `${clamped}%`;
+                    range.value = clamped;
+                };
+
+                const positionToValue = (clientX) => {
+                    const rect = stage.getBoundingClientRect();
+                    return ((clientX - rect.left) / rect.width) * 100;
+                };
+
+                range.addEventListener('input', (event) => update(event.target.value));
+                const start = (event) => {
+                    dragging = true;
+                    update(positionToValue(event.clientX));
+                };
+                stage.addEventListener('pointerdown', start);
+                handle.addEventListener('pointerdown', start);
+                window.addEventListener('pointermove', (event) => {
+                    if (!dragging) return;
+                    update(positionToValue(event.clientX));
+                });
+        window.addEventListener('pointerup', () => {
+                    dragging = false;
+                });
+                window.addEventListener('pointercancel', () => {
+                    dragging = false;
+                });
+                update(50);
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            renderComparisonGrid(compareIndex);
+        });
+
+        function renderComparisonGrid(index) {
+            const item = comparisonItems[index];
+            const grid = document.getElementById('comparison-grid');
+            grid.innerHTML = createComparisonCard(item);
+            document.getElementById('compare-name').textContent = `${index + 1} / ${comparisonItems.length}`;
+            const inputImg = grid.querySelector('.input-image-wrap img');
+            const stage = grid.querySelector('.compare-stage');
+            if (inputImg && stage) {
+                const syncHeight = () => {
+                    const size = inputImg.getBoundingClientRect().width;
+                    inputImg.style.height = `${size}px`;
+                    stage.style.height = `${size}px`;
+                };
+                if (inputImg.complete) syncHeight();
+                else inputImg.addEventListener('load', syncHeight, { once: true });
+                window.requestAnimationFrame(syncHeight);
+            }
+            initializeComparisonSliders();
+        }
+
+        function changeComparison(step) {
+            const totalPages = comparisonItems.length;
+            compareIndex = (compareIndex + step + totalPages) % totalPages;
+            renderComparisonGrid(compareIndex);
+        }
+
+        function renderGeneration(index) {
+            const perPage = 4;
+            const start = index * perPage;
+            const items = generationItems.slice(start, start + perPage);
+            document.getElementById('generation-page').innerHTML = items.map((id, itemIndex) => createGenerationCard(id, start + itemIndex)).join('');
+            document.getElementById('generation-name').textContent = `${index + 1} / ${Math.ceil(generationItems.length / perPage)}`;
+        }
+
+        function changeGeneration(step) {
+            const totalPages = Math.ceil(generationItems.length / 4);
+            generationIndex = (generationIndex + step + totalPages) % totalPages;
+            renderGeneration(generationIndex);
+        }
+
+        function renderEdit(index) {
+            document.getElementById('edit-card').innerHTML = createEditCard(editItems[index]);
+            document.getElementById('edit-name').textContent = `${index + 1} / ${editItems.length}`;
+            stylizeOriginalMeshes();
+        }
+
+        function changeEdit(step) {
+            editIndex = (editIndex + step + editItems.length) % editItems.length;
+            renderEdit(editIndex);
+        }
+
+        document.getElementById('prev-generation').addEventListener('click', () => changeGeneration(-1));
+        document.getElementById('next-generation').addEventListener('click', () => changeGeneration(1));
+        document.getElementById('prev-compare').addEventListener('click', () => changeComparison(-1));
+        document.getElementById('next-compare').addEventListener('click', () => changeComparison(1));
+        document.getElementById('prev-edit').addEventListener('click', () => changeEdit(-1));
+        document.getElementById('next-edit').addEventListener('click', () => changeEdit(1));
+
+        function stylizeOriginalMeshes() {
+            document.querySelectorAll('model-viewer.untextured-mesh').forEach((viewer) => {
+                if (viewer.dataset.styled === 'true') return;
+                viewer.dataset.styled = 'true';
+                viewer.addEventListener('load', () => {
+                    try {
+                        if (!viewer.model || !viewer.model.materials) return;
+                        viewer.model.materials.forEach((material) => {
+                            if (!material.pbrMetallicRoughness) return;
+                            if (material.pbrMetallicRoughness.baseColorTexture) {
+                                material.pbrMetallicRoughness.baseColorTexture.setTexture(null);
+                            }
+                            material.pbrMetallicRoughness.setBaseColorFactor([0.72, 0.72, 0.72, 1]);
+                            material.pbrMetallicRoughness.setMetallicFactor(0.04);
+                            material.pbrMetallicRoughness.setRoughnessFactor(0.9);
+                        });
+                    } catch (error) {
+                        console.warn('Failed to simplify original mesh texture.', error);
+                    }
+                }, { once: true });
+            });
+        }
+
+        renderComparisonGrid(compareIndex);
+        renderGeneration(generationIndex);
+        renderEdit(editIndex);
+    </script>
+</body>
+
+</html>
